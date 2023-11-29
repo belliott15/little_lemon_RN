@@ -1,12 +1,24 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Pressable, SafeAreaView, StyleSheet, Text } from "react-native";
 
-const WelcomeScreen = () => {
+const WelcomeScreen = ({ navigation }) => {
   return (
-    <View>
-      <Text>Welcome Screen</Text>
-    </View>
+    <SafeAreaView>
+      <Text>Welcome to Little Lemon</Text>
+      <Pressable onPress={() => navigation.navigate("Subscribe")}>
+        <Text>Subscribe</Text>
+      </Pressable>
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
 
 export default WelcomeScreen;
