@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: 250,
     height: 40,
-    fontSize: 25,
+    fontSize: 18,
     shadowColor: "grey",
     shadowOffset: {
       height: 8,
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   },
   buttonDisabled: {
     padding: 7,
-    backgroundColor: "#404a43",
+    backgroundColor: "#7e807f",
     borderRadius: 10,
     shadowColor: "#b8bc86",
     shadowOffset: {
