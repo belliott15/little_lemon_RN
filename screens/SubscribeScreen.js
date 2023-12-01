@@ -12,12 +12,21 @@ import { validateEmail } from "../utils/index.js";
 
 const SubscribeScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
+  const [isEmailValid, setIsEmailValid] = useState(false);
 
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    alert("You are now signed up for our newsletter!");
-    navigation.navigate("Welcome");
-    console.log(email, "email");
+  const handleSubscribe = () => {
+    if (isEmailValid) {
+      alert("You are now Signed up for our newsletter");
+      navigation.navigate("Welcome");
+      setEmail("");
+    } else {
+      alert("Please input a valid email address");
+    }
+  };
+
+  const handleEmailChange = (input) => {
+    setEmail(input);
+    setIsEmailValid(validateEmail(input));
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -32,13 +41,12 @@ const SubscribeScreen = ({ navigation }) => {
       <TextInput
         placeholder="Type your email"
         style={styles.textBox}
-        onChangText={setEmail}
+        onChangeText={handleEmailChange}
       />
       <Pressable
-        onPress={(e) => {
-          handleSubscribe(e);
-        }}
-        style={styles.button}
+        onPress={handleSubscribe}
+        style={isEmailValid ? styles.button : styles.buttonDisabled}
+        disabled={!isEmailValid}
       >
         <Text style={{ color: "white", fontSize: 20 }}>Subscribe</Text>
       </Pressable>
@@ -91,7 +99,23 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.6,
     justifyContent: "center",
-    alignContent: "center",
+    alignItems: "center",
+    width: 250,
+    alignItems: "center",
+    marginTop: 30,
+  },
+  buttonDisabled: {
+    padding: 7,
+    backgroundColor: "#404a43",
+    borderRadius: 10,
+    shadowColor: "#b8bc86",
+    shadowOffset: {
+      height: 8,
+      width: 8,
+    },
+    shadowOpacity: 0.6,
+    justifyContent: "center",
+    alignItems: "center",
     width: 250,
     alignItems: "center",
     marginTop: 30,
